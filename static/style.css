@@ -22,66 +22,55 @@ body {
   padding: 0 1.5rem;
 }
 
-.hero h1 {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(2.75rem, 8vw, 7rem);
-  letter-spacing: 0.18em;
-  line-height: 1.05;
-  margin: 0 0 0.75rem;
-}
-
-.wordmark {
+.logo-mark {
   position: relative;
   display: inline-block;
+  width: min(82vw, 760px);
 }
 
-.wordmark::after {
-  content: attr(data-text);
+.logo-mark img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.logo-mark::after {
+  content: "";
   position: absolute;
   inset: 0;
-  color: transparent;
   background: linear-gradient(
-    110deg,
+    90deg,
     transparent 0%,
-    rgba(249, 249, 255, 0.15) 38%,
-    rgba(249, 249, 255, 0.9) 50%,
-    rgba(249, 249, 255, 0.2) 62%,
-    transparent 80%
+    rgba(11, 18, 51, 0) 46%,
+    rgba(11, 18, 51, 0.7) 50%,
+    rgba(11, 18, 51, 0) 54%,
+    transparent 100%
   );
-  background-size: 260% 100%;
-  background-position: 120% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  opacity: 0.9;
+  transform: translateX(-130%);
+  opacity: 0.7;
+  mix-blend-mode: multiply;
   pointer-events: none;
-  animation: drafting 16s ease-in-out infinite;
-}
-
-.slogan {
-  font-family: "IBM Plex Serif", serif;
-  font-size: clamp(1rem, 2.5vw, 1.7rem);
-  margin: 0 0 1.6rem;
-  opacity: 0.85;
+  animation: drafting 18s ease-in-out infinite;
 }
 
 @keyframes drafting {
   0%,
   60% {
-    background-position: 120% 0;
+    transform: translateX(-130%);
   }
 
   75% {
-    background-position: 20% 0;
+    transform: translateX(0%);
   }
 
   90%,
   100% {
-    background-position: -80% 0;
+    transform: translateX(130%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wordmark::after {
+  .logo-mark::after {
     animation: none;
   }
 }
