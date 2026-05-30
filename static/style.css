@@ -30,6 +30,33 @@ body {
   margin: 0 0 0.75rem;
 }
 
+.wordmark {
+  position: relative;
+  display: inline-block;
+}
+
+.wordmark::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(249, 249, 255, 0.15) 38%,
+    rgba(249, 249, 255, 0.9) 50%,
+    rgba(249, 249, 255, 0.2) 62%,
+    transparent 80%
+  );
+  background-size: 260% 100%;
+  background-position: 120% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: drafting 16s ease-in-out infinite;
+}
+
 .slogan {
   font-family: "IBM Plex Serif", serif;
   font-size: clamp(1rem, 2.5vw, 1.7rem);
@@ -37,50 +64,24 @@ body {
   opacity: 0.85;
 }
 
-.build {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0.35rem;
-  height: 14px;
-}
-
-.build span {
-  width: 6px;
-  height: 6px;
-  background: var(--white);
-  opacity: 0.6;
-  transform-origin: bottom;
-  animation: rise 2.2s ease-in-out infinite;
-}
-
-.build span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.build span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes rise {
+@keyframes drafting {
   0%,
-  25% {
-    transform: scaleY(0.3);
-    opacity: 0.35;
+  60% {
+    background-position: 120% 0;
   }
 
-  45% {
-    transform: scaleY(1.6);
-    opacity: 0.9;
+  75% {
+    background-position: 20% 0;
   }
 
-  65% {
-    transform: scaleY(1);
-    opacity: 0.7;
-  }
-
+  90%,
   100% {
-    transform: scaleY(0.6);
-    opacity: 0.45;
+    background-position: -80% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark::after {
+    animation: none;
   }
 }
